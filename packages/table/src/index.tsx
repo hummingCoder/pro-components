@@ -14,6 +14,7 @@ import {
   zhTWIntl,
   frFRIntl,
   ptBRIntl,
+  trTRIntl,
 } from '@ant-design/pro-provider';
 import { ProCoreActionType } from '@ant-design/pro-utils';
 import { FieldStatus, ProFieldValueType, FieldIndexColumn } from '@ant-design/pro-field';
@@ -61,6 +62,7 @@ export {
   zhTWIntl,
   frFRIntl,
   ptBRIntl,
+  trTRIntl,
 };
 
 export default ProTable;

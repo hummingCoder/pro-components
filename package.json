@@ -1,4 +1,5 @@
 {
+  "name": "bugs-buny",
   "private": true,
   "license": "MIT",
   "workspaces": [

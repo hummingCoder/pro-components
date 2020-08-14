@@ -43,6 +43,8 @@ export type ProFieldRequestData<T, U = any> = (
  * 操作类型
  */
 export interface ProCoreActionType {
+  setDataSource?: (value: any) => void;
+  getDataSource?: () => any;
   reload: (resetPageIndex?: boolean) => void;
   reloadAndRest?: () => void;
   fetchMore?: () => void;

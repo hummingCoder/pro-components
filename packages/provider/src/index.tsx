@@ -12,6 +12,7 @@ import msMY from './locale/ms_MY';
 import zhTW from './locale/zh_TW';
 import frFR from './locale/fr_FR';
 import ptBR from './locale/pt_BR';
+import trTR from './locale/tr_TR';
 
 export const getLang = (): string => {
   const isNavigatorLanguageValid =
@@ -66,6 +67,7 @@ const msMYIntl = createIntl('ms_MY', msMY);
 const zhTWIntl = createIntl('zh_TW', zhTW);
 const frFRIntl = createIntl('fr_FR', frFR);
 const ptBRIntl = createIntl('pt_BR', ptBR);
+const trTRIntl = createIntl('tr_TR', trTR);
 
 const intlMap = {
   'zh-CN': zhCNIntl,
@@ -79,6 +81,7 @@ const intlMap = {
   'zh-TW': zhTWIntl,
   'fr-FR': frFRIntl,
   'pt-BR': ptBRIntl,
+  'tr-TR': trTRIntl,
 };
 
 const intlMapKeys = Object.keys(intlMap);
@@ -99,6 +102,7 @@ export {
   zhTWIntl,
   frFRIntl,
   ptBRIntl,
+  trTRIntl,
   intlMap,
   intlMapKeys,
 };

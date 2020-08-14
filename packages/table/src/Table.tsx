@@ -313,10 +313,10 @@ const columnRender = <T, U = any>({
   counter,
 }: ColumnRenderInterface<T>): any => {
   const { action } = counter;
+  const { renderText = (val: any) => val } = item;
   if (!action.current) {
     return null;
   }
-  const { renderText = (val: any) => val } = item;
   const renderTextStr = renderText(text, row, index, action.current);
   const textDom = defaultRenderText<T, {}>(
     renderTextStr,
@@ -373,8 +373,7 @@ const defaultOnFilter = (value: string, record: any, dataIndex: string | string[
   if (typeof recordElement === 'number') {
     recordElement = recordElement.toString();
   }
-  const itemValue = String(recordElement) as string;
-
+  const itemValue = String(recordElement || '') as string;
   return String(itemValue) === String(value);
 };
 
@@ -401,13 +400,10 @@ const genColumnList = <T, U = {}>(
       if (noNeedPro) {
         return item;
       }
-      const { propsRef } = counter;
       const config = columnKey ? map[columnKey] || { fixed: item.fixed } : { fixed: item.fixed };
       const tempColumns = {
         key: columnsIndex,
-        onFilter: propsRef.current?.request
-          ? undefined
-          : (value: string, row: T) => defaultOnFilter(value, row, dataIndex as string[]),
+        onFilter: defaultOnFilter,
         index: columnsIndex,
         ...item,
         title: renderColumnsTitle(item),
@@ -574,9 +570,9 @@ const ProTable = <T extends {}, U extends ParamsType>(
   /**
    * 绑定 action
    */
-  useActionType(actionRef, counter, onCleanSelected);
+  useActionType(action, actionRef, counter, onCleanSelected);
   counter.setAction(action);
-  counter.propsRef.current = props;
+
   /**
    *  保存一下 propsColumns
    *  生成 form 需要用
@@ -773,6 +769,7 @@ const ProTable = <T extends {}, U extends ParamsType>(
         if (rest.onChange) {
           rest.onChange(changePagination, filters, sorter, extra);
         }
+
         // 制造筛选的数据
         setProFilter(pickUndefined<any>(filters));
 

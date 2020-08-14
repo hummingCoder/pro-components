@@ -148,6 +148,7 @@ export const mergePagination = <T, U>(
  * @param onCleanSelected
  */
 export const useActionType = <T, U = any>(
+  action: UseFetchDataAction<RequestData<T>>,
   ref: ProTableProps<T, any>['actionRef'],
   counter: ReturnType<CounterType>,
   onCleanSelected: () => void,
@@ -158,6 +159,10 @@ export const useActionType = <T, U = any>(
    */
   useEffect(() => {
     const userAction: ProCoreActionType = {
+      setDataSource: (value: any) => {
+        action.setDataSource(value);
+      },
+      getDataSource: () => action.dataSource,
       reload: async (resetPageIndex?: boolean) => {
         const {
           action: { current },
@@ -212,7 +217,7 @@ export const useActionType = <T, U = any>(
       // eslint-disable-next-line no-param-reassign
       ref.current = userAction;
     }
-  }, []);
+  }, [action]);
 };
 
 type PostDataType<T> = (data: T) => T;

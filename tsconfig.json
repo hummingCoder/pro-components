@@ -26,6 +26,7 @@
     }
   },
   "include": [
+    "index.ts",
     "**/src",
     "**/docs",
     "scripts",

@@ -8,6 +8,7 @@ export interface RequestData<T> {
   [key: string]: any;
 }
 export interface UseFetchDataAction<T extends RequestData<any>> {
+  setDataSource: (value: any) => void;
   dataSource: T['data'] | T;
   loading: boolean | undefined;
   hasMore: boolean;
@@ -167,7 +168,6 @@ const useFetchData = <T extends RequestData<any>>(
     if (manual) {
       return () => null;
     }
-    mountRef.current = true;
     fetchListDebounce.run();
     return () => {
       fetchListDebounce.cancel();
@@ -176,6 +176,7 @@ const useFetchData = <T extends RequestData<any>>(
   }, [...effects, manual]);
 
   return {
+    setDataSource: setList,
     dataSource: list,
     loading,
     reload: async () => fetchListDebounce.run(),
