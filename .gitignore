@@ -38,3 +38,4 @@ screenshot
 .firebase
 packages/field/lib/index.js
 .eslintcache
+/packages/table/
